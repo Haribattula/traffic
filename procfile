@@ -1,1 +1,1 @@
-web: gunicorn Live_Traffic_Web_App.wsgi
+web: gunicorn traffic_project.wsgi
