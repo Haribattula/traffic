@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Traffic Monitoring & Navigation System</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
+    <link rel="stylesheet" href="{% static 'traffic_app/css/styles.css' %}" />
+</head>
+<body>
+    <!-- Header -->
+    <header class="app-header">
+        <div class="header-content">
+            <span class="traffic-light">🚦</span>
+            <h1>Live Traffic Monitoring & Navigation System</h1>
+        </div>
+    </header>
+
+    <div class="app-container">
+        <!-- Left Panel -->
+        <div class="left-panel">
+            <div class="search-container">
+                <input type="text" id="locationSearch" placeholder="Enter location" class="search-input">
+                <button id="getTrafficBtn" class="blue-button">
+                    <i class="fas fa-traffic-light"></i>
+                    Get Traffic Info
+                </button>
+                <button id="findRouteBtn" class="blue-button find-route-btn">
+                    <i class="fas fa-route"></i>
+                    Find Route
+                </button>
+            </div>
+
+            <div class="navigation-box">
+                <div class="location-input">
+                    <input 
+                        type="text" 
+                        id="startPoint" 
+                        placeholder="Enter start point"
+                        class="search-input"
+                    >
+                    <button id="getCurrentLocation" class="location-button">📍</button>
+                </div>
+                <div class="location-input">
+                    <input 
+                        type="text" 
+                        id="endPoint" 
+                        placeholder="Enter destination"
+                        class="search-input"
+                    >
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Panel - Traffic Info -->
+        <div id="trafficInfo" class="right-panel">
+            <div class="route-info">
+                <h2>MDR_NH167A</h2>
+                <p class="route-stats">25.3 km, 28 min</p>
+                
+                <div class="directions">
+                    <!-- Direction steps will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <div class="traffic-conditions">
+                <h3>Current Traffic Conditions</h3>
+                <ul>
+                    <li>Traffic Level: <span class="heavy">Heavy</span></li>
+                    <li>Average Speed: 10-20 km/h</li>
+                    <li>Congestion: 80%</li>
+                </ul>
+            </div>
+
+            <div class="nearby-roads">
+                <h3>Nearby Roads Status</h3>
+                <div class="road-status">
+                    <h4>Guntur Main Junction</h4>
+                    <p>Status: <span class="heavy">Heavy</span></p>
+                </div>
+                <div class="road-status">
+                    <h4>Nearby Cross Roads</h4>
+                    <p>Status: <span class="light">Light</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Map Container -->
+        <div id="map" class="map"></div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
+    <script src="{% static 'traffic_app/js/map.js' %}"></script>
+    <script>
+        const TOMTOM_API_KEY = '{{ TOMTOM_API_KEY }}';
+        // Verify API key is loaded
+        console.log('API Key loaded:', TOMTOM_API_KEY ? 'Yes' : 'No');
+    </script>
+</body>
+</html> 

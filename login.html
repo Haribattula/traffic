@@ -1,0 +1,26 @@
+{% extends 'traffic_app/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="login-container">
+    <div class="login-box">
+        <h2>Login to Traffic Monitor</h2>
+        <form method="POST" class="login-form">
+            {% csrf_token %}
+            <div class="form-group">
+                <input type="text" name="username" placeholder="Username" required>
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" placeholder="Password" required>
+            </div>
+            {% if error %}
+            <p class="error-message">{{ error }}</p>
+            {% endif %}
+            <button type="submit" class="login-btn">Login</button>
+        </form>
+        <div class="register-link">
+            <p>Don't have an account? <a href="{% url 'register' %}">Register here</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %} 
